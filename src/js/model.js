@@ -10,18 +10,21 @@
   }
 
   Model.prototype.getAll = function(callback) {
-    var items = localStorage.getItem(this._dbName);
+    var articles = localStorage.getItem(this._dbName);
 
     callback = callback || function() {};
-    callback(JSON.parse(items));
+    callback(JSON.parse(articles));
   };
 
-  Model.prototype.create = function(item) {
-    var items = JSON.parse(localStorage.getItem(this._dbName));
+  Model.prototype.create = function(article, callback) {
+    var articles = JSON.parse(localStorage.getItem(this._dbName));
 
-    item.id = new Date().getTime();
-    items.push(item);
-    localStorage.setItem(this._dbName, JSON.stringify(items));
+    article.id = new Date().getTime();
+    articles.push(article);
+    localStorage.setItem(this._dbName, JSON.stringify(articles));
+
+    callback = callback || function() {};
+    callback(article)
   };
 
   window.app = window.app || {};

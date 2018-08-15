@@ -22,14 +22,17 @@
   <section class="bbsapp">
     <section class="articles">
       <h1>Articles</h1>
-      <ul class="article-list"></ul>
+      <ul class="list-article"></ul>
     </section>
     <section class="new-article">
       <h1>New Article</h1>
-      <input class="title" placeholder="title" autofocus />
-      <input class="author" placeholder="author" autofocus />
-      <input class="email" placeholder="email address" autofocus />
-      <textarea class="content" placeholder="content" cols="40" rows="5"></textarea>
+      <form class="form-article">
+        <input class="text-input" type="text" id="form-title" name="title" placeholder="title" autofocus required />
+        <input class="text-input" type="text" id="form-author" name="author" placeholder="author" required />
+        <input class="text-input" type="text" id="form-email" name="email" placeholder="email address" required />
+        <textarea class="text-input" type="text" id="form-content" name="content" placeholder="content" cols="40" rows="5" required ></textarea>
+        <button class="button-submit" type="submit">POST ARTICLE</button>
+      </form>
     </section>
   </section>
   <script src="src/js/utils.js"></script>

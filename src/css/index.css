@@ -59,3 +59,14 @@ textarea::input-placeholder {
   font-weight: 50;
   text-align: center;
 }
+
+button {
+  color: inherit;
+  margin: 3px;
+  padding: 3px 7px;
+  border-radius: 3px;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+}
