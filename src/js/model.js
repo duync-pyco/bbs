@@ -24,7 +24,7 @@
     localStorage.setItem(this._dbName, JSON.stringify(articles));
 
     callback = callback || function() {};
-    callback(article)
+    callback(article);
   };
 
   window.app = window.app || {};

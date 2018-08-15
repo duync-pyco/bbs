@@ -19,16 +19,16 @@
     this.view.render("setPage", page);
 
     if (page === "articles") {
-      this._getArticleAndSetView()
+      this._getArticleAndSetView();
     }
   };
 
   Controller.prototype._getArticleAndSetView = function() {
     var self = this;
     self.model.getAll(function(articles) {
-      self.view.render("showArticles", articles)
+      self.view.render("showArticles", articles);
     });
-  }
+  };
 
   Controller.prototype._submitItem = function(article) {
     var self = this;

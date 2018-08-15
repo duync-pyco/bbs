@@ -12,7 +12,7 @@
     this.$formAuthor = qs("#form-author");
     this.$formEmail = qs("#form-email");
     this.$formContent = qs("#form-content");
-    this.$articleList = qs(".list-article")
+    this.$articleList = qs(".list-article");
   }
 
   View.prototype.render = function(viewCommand, parameter) {
@@ -25,7 +25,7 @@
         });
       },
       showArticles: function() {
-        self.$articleList.innerHTML = JSON.stringify(parameter)
+        self.$articleList.innerHTML = JSON.stringify(parameter);
       }
     };
 
