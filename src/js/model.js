@@ -5,7 +5,7 @@
     this._dbName = name;
 
     if (!localStorage.getItem(name)) {
-      localStorage.setItem(name, JSON.stringify([]));
+      localStorage.setItem(name, JSON.stringify(data));
     }
   }
 
@@ -33,3 +33,46 @@
   window.app = window.app || {};
   window.app.Model = Model;
 })(window);
+
+var data = [
+  {
+    title: "Lorem Ipsum 01",
+    author: "Duy Nguyen",
+    email: "duy.nguyencong@pycogroup.com",
+    content:
+      "Integer at sapien finibus risus auctor condimentum vitae in lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec leo vitae dui hendrerit hendrerit. Phasellus fringilla elit libero, vel euismod purus luctus varius. Sed condimentum vel ipsum sed ultricies. Phasellus nunc ex, venenatis quis fringilla vitae, feugiat fermentum est. Cras feugiat purus eget erat pulvinar, ac auctor diam ullamcorper. Etiam sed mauris pretium, maximus tellus vitae, aliquet leo.",
+    id: 1,
+    updatedAt: "Wed Aug 15 2018 19:49:35 GMT+0700 (Indochina Time)",
+    views: 2
+  },
+  {
+    title: "Lorem Ipsum 02",
+    author: "Duy Nguyen",
+    email: "duy.nguyencong@pycogroup.com",
+    content:
+      "Integer at sapien finibus risus auctor condimentum vitae in lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec leo vitae dui hendrerit hendrerit. Phasellus fringilla elit libero, vel euismod purus luctus varius. Sed condimentum vel ipsum sed ultricies. Phasellus nunc ex, venenatis quis fringilla vitae, feugiat fermentum est. Cras feugiat purus eget erat pulvinar, ac auctor diam ullamcorper. Etiam sed mauris pretium, maximus tellus vitae, aliquet leo.",
+    id: 2,
+    updatedAt: "Wed Aug 15 2018 19:49:35 GMT+0700 (Indochina Time)",
+    views: 7
+  },
+  {
+    title: "Lorem Ipsum 03",
+    author: "Duy Nguyen",
+    email: "duy.nguyencong@pycogroup.com",
+    content:
+      "Integer at sapien finibus risus auctor condimentum vitae in lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec leo vitae dui hendrerit hendrerit. Phasellus fringilla elit libero, vel euismod purus luctus varius. Sed condimentum vel ipsum sed ultricies. Phasellus nunc ex, venenatis quis fringilla vitae, feugiat fermentum est. Cras feugiat purus eget erat pulvinar, ac auctor diam ullamcorper. Etiam sed mauris pretium, maximus tellus vitae, aliquet leo.",
+    id: 3,
+    updatedAt: "Wed Aug 15 2018 19:49:35 GMT+0700 (Indochina Time)",
+    views: 2
+  },
+  {
+    title: "Lorem Ipsum 04",
+    author: "Duy Nguyen",
+    email: "duy.nguyencong@pycogroup.com",
+    content:
+      "Integer at sapien finibus risus auctor condimentum vitae in lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec leo vitae dui hendrerit hendrerit. Phasellus fringilla elit libero, vel euismod purus luctus varius. Sed condimentum vel ipsum sed ultricies. Phasellus nunc ex, venenatis quis fringilla vitae, feugiat fermentum est. Cras feugiat purus eget erat pulvinar, ac auctor diam ullamcorper. Etiam sed mauris pretium, maximus tellus vitae, aliquet leo.",
+    id: 4,
+    updatedAt: "Wed Aug 15 2018 19:49:35 GMT+0700 (Indochina Time)",
+    views: 1
+  }
+];

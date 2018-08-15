@@ -26,7 +26,9 @@
   Controller.prototype._getArticleAndSetView = function() {
     var self = this;
     self.model.getAll(function(articles) {
-      self.view.render("showArticles", articles);
+      self.view.render("showArticles", articles.sort(function(a, b) {
+        return a.id < b.id
+      }));
     });
   };
 
