@@ -4,17 +4,28 @@
 <head>
   <title>BBS</title>
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/navigation.css">
 </head>
 
 <body>
+  <header class="header">
+    <ul class="navigation">
+        <li>
+            <a href="#/" class="selected">Home</a>
+          </li>
+        <li>
+          <a href="#/new-article">New Article</a>
+        </li>
+      </ul>
+  </header>
   <section class="bbsapp">
-    <header>
+    <section>
       <h1>New Article</h1>
       <input class="title" placeholder="title" autofocus />
       <input class="author" placeholder="author" autofocus />
       <input class="email" placeholder="email address" autofocus />
       <textarea class="content" placeholder="content" cols="40" rows="5"></textarea>
-    </header>
+    </section>
   </section>
 </body>
 
