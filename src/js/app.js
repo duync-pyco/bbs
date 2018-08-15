@@ -2,8 +2,9 @@
   "use strict";
 
   function BBS() {
+    this.model = new app.Model("articles");
     this.view = new app.View();
-    this.controller = new app.Controller(this.view);
+    this.controller = new app.Controller(this.model, this.view);
   }
 
   var bbs = new BBS();

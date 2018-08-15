@@ -13,7 +13,8 @@
     var viewCommands = {
       setPage: function() {
         Object.keys(self.pages).forEach(page => {
-          self.pages[page].style.display = page === parameter ? "block" : "none";
+          self.pages[page].style.display =
+            page === parameter ? "block" : "none";
         });
       }
     };
