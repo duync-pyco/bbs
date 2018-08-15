@@ -35,6 +35,7 @@
     self.model.create(article, function(addedArticle) {
       self._changeLocation("#/articles");
       self.view.render("setPage", "articles");
+      self._getArticleAndSetView()
     });
   };
 
