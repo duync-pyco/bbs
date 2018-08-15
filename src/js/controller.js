@@ -14,7 +14,7 @@
 
   Controller.prototype.setPage = function(locationHash) {
     var route = locationHash.split("/")[1];
-    var page = route || "articles";
+    var page = route || "new-article";
 
     this.view.render("setPage", page);
 
