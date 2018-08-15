@@ -26,10 +26,10 @@
   function Template() {
     this.defaultTemplate =
       '<li class="item-article" data-id={{id}}>' +
-      '<h2>{{title}}</h2>' +
-      '<p>Posted by {{author}} - {{email}}</p>' +
-      '<p>Updated at: {{updatedAt}} - Views: {{views}}</p>' +
-      '<p>{{content}}</p>' +
+      "<h2>{{title}}</h2>" +
+      "<p>Posted by {{author}} - {{email}}</p>" +
+      "<p>Updated at: {{updatedAt}} - Views: {{views}}</p>" +
+      "<p>{{content}}</p>" +
       "</li>";
   }
 
@@ -44,7 +44,10 @@
       template = template.replace("{{title}}", escape(articles[i].title));
       template = template.replace("{{author}}", escape(articles[i].author));
       template = template.replace("{{email}}", escape(articles[i].email));
-      template = template.replace("{{updatedAt}}", escape(articles[i].updatedAt));
+      template = template.replace(
+        "{{updatedAt}}",
+        escape(articles[i].updatedAt)
+      );
       template = template.replace("{{views}}", articles[i].views);
       template = template.replace("{{content}}", escape(articles[i].content));
 
