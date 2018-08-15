@@ -20,7 +20,10 @@
     var articles = JSON.parse(localStorage.getItem(this._dbName));
 
     article.id = new Date().getTime();
+    article.updatedAt = new Date().toString();
+    article.views = 0;
     articles.push(article);
+
     localStorage.setItem(this._dbName, JSON.stringify(articles));
 
     callback = callback || function() {};

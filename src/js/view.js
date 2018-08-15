@@ -1,7 +1,8 @@
 (function(window) {
   "use strict";
 
-  function View() {
+  function View(template) {
+    this.template = template;
     this.pages = {
       articles: qs(".articles"),
       "new-article": qs(".new-article")
@@ -25,7 +26,7 @@
         });
       },
       showArticles: function() {
-        self.$articleList.innerHTML = JSON.stringify(parameter);
+        self.$articleList.innerHTML = self.template.showArticles(parameter)
       }
     };
 
