@@ -41,7 +41,7 @@ var data = [
     email: "duy.nguyencong@pycogroup.com",
     content:
       "Integer at sapien finibus risus auctor condimentum vitae in lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec leo vitae dui hendrerit hendrerit. Phasellus fringilla elit libero, vel euismod purus luctus varius. Sed condimentum vel ipsum sed ultricies. Phasellus nunc ex, venenatis quis fringilla vitae, feugiat fermentum est. Cras feugiat purus eget erat pulvinar, ac auctor diam ullamcorper. Etiam sed mauris pretium, maximus tellus vitae, aliquet leo.",
-    id: 1,
+    id: 1534391403647,
     updatedAt: "Wed Aug 15 2018 19:49:35 GMT+0700 (Indochina Time)",
     views: 2
   },
@@ -51,7 +51,7 @@ var data = [
     email: "duy.nguyencong@pycogroup.com",
     content:
       "Integer at sapien finibus risus auctor condimentum vitae in lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec leo vitae dui hendrerit hendrerit. Phasellus fringilla elit libero, vel euismod purus luctus varius. Sed condimentum vel ipsum sed ultricies. Phasellus nunc ex, venenatis quis fringilla vitae, feugiat fermentum est. Cras feugiat purus eget erat pulvinar, ac auctor diam ullamcorper. Etiam sed mauris pretium, maximus tellus vitae, aliquet leo.",
-    id: 2,
+    id: 1534391403649,
     updatedAt: "Wed Aug 15 2018 19:49:35 GMT+0700 (Indochina Time)",
     views: 7
   },
@@ -61,7 +61,7 @@ var data = [
     email: "duy.nguyencong@pycogroup.com",
     content:
       "Integer at sapien finibus risus auctor condimentum vitae in lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec leo vitae dui hendrerit hendrerit. Phasellus fringilla elit libero, vel euismod purus luctus varius. Sed condimentum vel ipsum sed ultricies. Phasellus nunc ex, venenatis quis fringilla vitae, feugiat fermentum est. Cras feugiat purus eget erat pulvinar, ac auctor diam ullamcorper. Etiam sed mauris pretium, maximus tellus vitae, aliquet leo.",
-    id: 3,
+    id: 1534391403655,
     updatedAt: "Wed Aug 15 2018 19:49:35 GMT+0700 (Indochina Time)",
     views: 2
   },
@@ -71,7 +71,7 @@ var data = [
     email: "duy.nguyencong@pycogroup.com",
     content:
       "Integer at sapien finibus risus auctor condimentum vitae in lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean nec leo vitae dui hendrerit hendrerit. Phasellus fringilla elit libero, vel euismod purus luctus varius. Sed condimentum vel ipsum sed ultricies. Phasellus nunc ex, venenatis quis fringilla vitae, feugiat fermentum est. Cras feugiat purus eget erat pulvinar, ac auctor diam ullamcorper. Etiam sed mauris pretium, maximus tellus vitae, aliquet leo.",
-    id: 4,
+    id: 1534391403678,
     updatedAt: "Wed Aug 15 2018 19:49:35 GMT+0700 (Indochina Time)",
     views: 1
   }

@@ -25,13 +25,15 @@
 
   function Template() {
     this.articleTemplate =
-      "<h2>{{title}}</h2>" +
       "<p>Posted by {{author}} - {{email}}</p>" +
       "<p>Updated at: {{updatedAt}} - Views: {{views}}</p>" +
       "<p>{{content}}</p>";
 
     this.defaultTemplate =
-      '<li class="item-article" data-id={{id}}>' + this.articleTemplate + "</li>";
+      '<li class="item-article" data-id={{id}}>' +
+      "<h2 style='cursor: pointer;'>{{title}}</h2>" +
+      this.articleTemplate +
+      "</li>";
   }
 
   Template.prototype.showArticles = function(articles) {
@@ -56,6 +58,21 @@
     }
 
     return view;
+  };
+
+  Template.prototype.showArticle = function(article) {
+    var template =
+      "<h2>{{title}}</h2>" + this.articleTemplate;
+
+    template = template.replace("{{id}}", article.id);
+    template = template.replace("{{title}}", escape(article.title));
+    template = template.replace("{{author}}", escape(article.author));
+    template = template.replace("{{email}}", escape(article.email));
+    template = template.replace("{{updatedAt}}", escape(article.updatedAt));
+    template = template.replace("{{views}}", article.views);
+    template = template.replace("{{content}}", escape(article.content));
+
+    return template;
   };
 
   window.app = window.app || {};

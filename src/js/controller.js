@@ -8,7 +8,7 @@
     self.view = view;
 
     self.total = 0;
-    self.pageSize = 1;
+    self.pageSize = 2;
     self.pageIndex = 1;
 
     self.view.bind("submit", function(article) {
@@ -32,7 +32,33 @@
       --self.pageIndex;
       self._updateHashSizeAndIndex();
     });
+
+    self.view.bind("onArticleClick", function(id) {
+      self._navigateToViewArticle(id);
+    });
   }
+
+  Controller.prototype._navigateToViewArticle = function(id) {
+    this._changeLocation("#/article/" + id);
+    this.view.render("setPage", 'article');
+    this._getArticleAndSetView(id);
+  };
+
+  Controller.prototype._getArticleAndSetView = function(id) {
+    var self = this;
+    self.model.getAll(function(articles) {
+      var article = articles.find(function(value) {
+        return value.id == id;
+      });
+      if (article) {
+        article.views++;
+        // TODO: Save to database
+        self.view.render("showArticle", article);
+      } else {
+        self.view.render("showArticleNotFound");
+      }
+    });
+  };
 
   Controller.prototype._updateHashSizeAndIndex = function() {
     this._changeLocation("#/articles/" + this.pageSize + "/" + this.pageIndex);
@@ -63,6 +89,9 @@
         this.pageIndex = parseInt(index, 10);
       }
       this._getArticlesAndSetView();
+    } else if (page === "article") {
+      var id = locationHash.split("/")[2];
+      this._getArticleAndSetView(id);
     }
   };
 

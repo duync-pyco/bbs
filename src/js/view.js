@@ -19,6 +19,7 @@
     this.$backButton = qs(".button-back");
     this.$nextButton = qs(".button-next");
     this.$pageIndexSpan = qs(".span-page-index");
+    this.$articleBody = qs(".article-body");
   }
 
   View.prototype.render = function(viewCommand, parameter) {
@@ -43,6 +44,12 @@
         self.$pageSizeSelect.selectedIndex = i;
 
         self.$pageIndexSpan.innerHTML = "Page " + parameter.index;
+      },
+      showArticle: function() {
+        self.$articleBody.innerHTML = self.template.showArticle(parameter);
+      },
+      showArticleNotFound: function() {
+        self.$articleBody.innerHTML = undefined;
       }
     };
 
@@ -78,8 +85,17 @@
         event.preventDefault();
         handler();
       });
+    } else if (event === "onArticleClick") {
+      $delegate(self.$articleList, 'li h2', 'click', function () {
+        handler(self._itemId(this))
+      });
     }
   };
+
+  View.prototype._itemId = function (element) {
+    var li = $parent(element, 'li');
+		return parseInt(li.dataset.id, 10);
+	};
 
   View.prototype._getArticleAndClearForm = function() {
     var self = this;
