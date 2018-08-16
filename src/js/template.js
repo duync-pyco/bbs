@@ -34,6 +34,15 @@
       "<h2 style='cursor: pointer;'>{{title}}</h2>" +
       this.articleTemplate +
       "</li>";
+
+    this.articleFormTemplate =
+      "<form class='form-edit-article' data-id={{id}}>" +
+      "<input value='{{title}}' class='text-input' type='text' id='form-edit-title' name='title' placeholder='title' autofocus required />" +
+      "<input value='{{author}}' class='text-input' type='text' id='form-edit-author' name='author' placeholder='author' required />" +
+      "<input value='{{email}}' class='text-input' type='text' id='form-edit-email' name='email' placeholder='email address' required /> " +
+      "<textarea class='text-input' type='text' id='form-edit-content' name='content' placeholder='content' cols='40' rows='5' required>{{content}}</textarea>" +
+      "<button style='margin-bottom: -30px;' class='button-submit' type='submit'>UPDATE</button>" +
+      "</form>";
   }
 
   Template.prototype.showArticles = function(articles) {
@@ -61,15 +70,32 @@
   };
 
   Template.prototype.showArticle = function(article) {
-    var template =
-      "<h2>{{title}}</h2>" + this.articleTemplate;
+    var template = "<h2>{{title}}</h2>" + this.articleTemplate;
+    template +=
+      "<div style='float:left; margin-left: -4px; margin-top: 40px;' data-id={{id}}>" +
+      "<button class='button-edit'>Edit</button>" +
+      "<button class='button-delete'}>Delete</button>" +
+      "</div>";
 
+    // TODO: refactor this
     template = template.replace("{{id}}", article.id);
     template = template.replace("{{title}}", escape(article.title));
     template = template.replace("{{author}}", escape(article.author));
     template = template.replace("{{email}}", escape(article.email));
     template = template.replace("{{updatedAt}}", escape(article.updatedAt));
     template = template.replace("{{views}}", article.views);
+    template = template.replace("{{content}}", escape(article.content));
+
+    return template;
+  };
+
+  Template.prototype.showEditArticle = function(article) {
+    var template = this.articleFormTemplate;
+
+    template = template.replace("{{id}}", article.id);
+    template = template.replace("{{title}}", escape(article.title));
+    template = template.replace("{{author}}", escape(article.author));
+    template = template.replace("{{email}}", escape(article.email));
     template = template.replace("{{content}}", escape(article.content));
 
     return template;

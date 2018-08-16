@@ -45,17 +45,22 @@
     </section>
     <section class="new-article">
       <h1>New Article</h1>
+      <!-- TODO: Refactor this -->
       <form class="form-article">
         <input class="text-input" type="text" id="form-title" name="title" placeholder="title" autofocus required />
         <input class="text-input" type="text" id="form-author" name="author" placeholder="author" required />
         <input class="text-input" type="text" id="form-email" name="email" placeholder="email address" required />
         <textarea class="text-input" type="text" id="form-content" name="content" placeholder="content" cols="40" rows="5" required></textarea>
-        <button class="button-submit" type="submit">POST ARTICLE</button>
+        <button class="button-submit" type="submit">Post</button>
       </form>
     </section>
     <section class="article">
       <h1>View Article</h1>
       <div class="article-body" style="padding: 20px"></div>
+    </section>
+    <section class="article-edit">
+      <h1>Edit Article</h1>
+      <div class="article-edit-body" style="padding: 20px"></div>
     </section>
   </section>
   <script src="src/js/utils.js"></script>

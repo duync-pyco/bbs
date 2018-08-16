@@ -6,7 +6,8 @@
     this.pages = {
       articles: qs(".articles"),
       "new-article": qs(".new-article"),
-      article: qs(".article")
+      article: qs(".article"),
+      "article-edit": qs(".article-edit")
     };
 
     this.$articleForm = qs(".form-article");
@@ -20,6 +21,7 @@
     this.$nextButton = qs(".button-next");
     this.$pageIndexSpan = qs(".span-page-index");
     this.$articleBody = qs(".article-body");
+    this.$editArticleBody = qs(".article-edit-body");
   }
 
   View.prototype.render = function(viewCommand, parameter) {
@@ -50,6 +52,14 @@
       },
       showArticleNotFound: function() {
         self.$articleBody.innerHTML = undefined;
+      },
+      editArticle: function() {
+        self.$editArticleBody.innerHTML = self.template.showEditArticle(
+          parameter
+        );
+      },
+      showEditArticleNotFound: function() {
+        self.$editArticleBody.innerHTML = undefined;
       }
     };
 
@@ -86,16 +96,55 @@
         handler();
       });
     } else if (event === "onArticleClick") {
-      $delegate(self.$articleList, 'li h2', 'click', function () {
-        handler(self._itemId(this))
+      $delegate(self.$articleList, "li h2", "click", function() {
+        handler(self._itemId(this, "li"));
       });
+    } else if (event === "onEditArticle") {
+      $on(qs(".button-edit"), "click", function(event) {
+        event.preventDefault();
+        handler(self._itemId(this, "div"));
+      });
+    } else if (event === "onDeleteArticle") {
+      $on(qs(".button-delete"), "click", function(event) {
+        event.preventDefault();
+        handler(self._itemId(this, "div"));
+      });
+    } else if (event === "edit-submit") {
+      var editArticleForm = qs(".form-edit-article");
+      $on(
+        editArticleForm,
+        "submit",
+        function(event) {
+          event.preventDefault();
+          var article = self._getEditArticle();
+          article.id = parseInt(editArticleForm.dataset.id, 10);
+          handler(article);
+        },
+        false
+      );
     }
   };
 
-  View.prototype._itemId = function (element) {
-    var li = $parent(element, 'li');
-		return parseInt(li.dataset.id, 10);
-	};
+  View.prototype._itemId = function(element, parent) {
+    var parentElement = $parent(element, parent);
+    return parseInt(parentElement.dataset.id, 10);
+  };
+
+  View.prototype._getEditArticle = function() {
+    var formTitle = qs("#form-edit-title");
+    var formAuthor = qs("#form-edit-author");
+    var formEmail = qs("#form-edit-email");
+    var formContent = qs("#form-edit-content");
+
+    var article = {
+      title: formTitle.value,
+      author: formAuthor.value,
+      email: formEmail.value,
+      content: formContent.value
+    };
+
+    return article;
+  };
 
   View.prototype._getArticleAndClearForm = function() {
     var self = this;

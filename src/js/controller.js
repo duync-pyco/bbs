@@ -38,11 +38,46 @@
     });
   }
 
+  Controller.prototype._navigateToEditArticle = function(id) {
+    this._changeLocation("#/article-edit/" + id);
+    this.view.render("setPage", "article-edit");
+    this._getArticleAndSetEditView(id);
+  };
+
   Controller.prototype._navigateToViewArticle = function(id) {
     this._changeLocation("#/article/" + id);
     this.view.render("setPage", "article");
     this._getArticleAndSetView(id);
   };
+
+  Controller.prototype._getArticleAndSetEditView = function(id) {
+    var self = this;
+    self.model.getAll(function(articles) {
+      var article = articles.find(function(value) {
+        return value.id == id;
+      });
+      if (article) {
+        self.view.render("editArticle", article);
+        self.view.bind("edit-submit", function(article) {
+          self._updateArticle(article);
+        });
+      } else {
+        self.view.render("showEditArticleNotFound");
+      }
+    });
+  };
+
+  Controller.prototype._updateArticle = function(article) {
+    var self = this;
+    article.updatedAt = new Date().toString()
+    self.model.update(article, function() {
+      self._changeLocation(
+        "#/articles/" + self.pageSize + "/" + self.pageIndex
+      );
+      self.view.render("setPage", "articles");
+      self._getArticlesAndSetView();
+    });
+  }
 
   Controller.prototype._getArticleAndSetView = function(id) {
     var self = this;
@@ -54,11 +89,23 @@
         article.views++;
         self.model.update(article);
         self.view.render("showArticle", article);
+
+        self.view.bind("onEditArticle", function() {
+          self._navigateToEditArticle(id);
+        });
+
+        self.view.bind("onDeleteArticle", function() {
+          self._deleteArticle(id);
+        });
       } else {
         self.view.render("showArticleNotFound");
       }
     });
   };
+
+  Controller.prototype._deleteArticle = function() {
+    // TODO: finish it
+  }
 
   Controller.prototype._updateHashSizeAndIndex = function() {
     this._changeLocation("#/articles/" + this.pageSize + "/" + this.pageIndex);
@@ -92,6 +139,9 @@
     } else if (page === "article") {
       var id = locationHash.split("/")[2];
       this._getArticleAndSetView(id);
+    } else if (page === "article-edit") {
+      var id = locationHash.split("/")[2];
+      this._getArticleAndSetEditView(id);
     }
   };
 
@@ -121,7 +171,7 @@
     self.model.create(article, function(addedArticle) {
       self._changeLocation("#/articles");
       self.view.render("setPage", "articles");
-      self._getArticleAndSetView();
+      self._getArticlesAndSetView();
     });
   };
 
