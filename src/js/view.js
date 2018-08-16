@@ -96,7 +96,7 @@
         handler();
       });
     } else if (event === "onArticleClick") {
-      $delegate(self.$articleList, "li h2", "click", function() {
+      $delegate(self.$articleList, "li h2, li p", "click", function() {
         handler(self._itemId(this, "li"));
       });
     } else if (event === "onEditArticle") {

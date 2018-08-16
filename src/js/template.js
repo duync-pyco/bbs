@@ -30,8 +30,8 @@
       "<p>{{content}}</p>";
 
     this.defaultTemplate =
-      '<li class="item-article" data-id={{id}}>' +
-      "<h2 style='cursor: pointer;'>{{title}}</h2>" +
+      "<li class='item-article' style='cursor: pointer;' data-id={{id}}>" +
+      "<h2>{{title}}</h2>" +
       this.articleTemplate +
       "</li>";
 
