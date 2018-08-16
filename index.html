@@ -27,16 +27,18 @@
       <ul class="list-article"></ul>
       <div>
         <div style="float:right; padding-bottom: 20px;">
-          <button style="font-size: 20px">Back</button>
-          <span style="font-size: 25px; font-weight: 25px; padding: 10px;">Page 1</span>
-          <button style="font-size: 20px">Next</button>
+          <button class="button-back" style="font-size: 20px">Back</button>
+          <span class="span-page-index" style="font-size: 25px; font-weight: 25px; padding: 10px;">Page 1</span>
+          <button class="button-next" style="font-size: 20px">Next</button>
         </div>
         <div style="float: left; margin-top: 8px;">
           <span style="font-size: 25px; font-weight: 25px; padding: 10px;">Articles per page</span>
-          <select style="font-size: 15px;">
-            <option value="2" selected>2 items</option>
+          <select class="select-page-size" style="font-size: 15px;">
+            <option value="1">1 item</option>
+            <option value="2">2 items</option>
+            <option value="3">3 items</option>
             <option value="5">5 items</option>
-            <option value="10">10 items</option>
+            <option value="8">8 items</option>
           </select>
         </div>
       </div>
@@ -50,6 +52,10 @@
         <textarea class="text-input" type="text" id="form-content" name="content" placeholder="content" cols="40" rows="5" required></textarea>
         <button class="button-submit" type="submit">POST ARTICLE</button>
       </form>
+    </section>
+    <section class="article">
+      <h1>View Article</h1>
+      <div class="article-body" style="padding: 20px"></div>
     </section>
   </section>
   <script src="src/js/utils.js"></script>

@@ -5,7 +5,8 @@
     this.template = template;
     this.pages = {
       articles: qs(".articles"),
-      "new-article": qs(".new-article")
+      "new-article": qs(".new-article"),
+      article: qs(".article")
     };
 
     this.$articleForm = qs(".form-article");
@@ -14,6 +15,10 @@
     this.$formEmail = qs("#form-email");
     this.$formContent = qs("#form-content");
     this.$articleList = qs(".list-article");
+    this.$pageSizeSelect = qs(".select-page-size");
+    this.$backButton = qs(".button-back");
+    this.$nextButton = qs(".button-next");
+    this.$pageIndexSpan = qs(".span-page-index");
   }
 
   View.prototype.render = function(viewCommand, parameter) {
@@ -26,7 +31,18 @@
         });
       },
       showArticles: function() {
-        self.$articleList.innerHTML = self.template.showArticles(parameter)
+        self.$articleList.innerHTML = self.template.showArticles(parameter);
+      },
+      changeSizeAndIndex: function() {
+        var opts = self.$pageSizeSelect;
+        for (var i = 0; i < opts.length; ++i) {
+          if (opts[i].value == parameter.size) {
+            break;
+          }
+        }
+        self.$pageSizeSelect.selectedIndex = i;
+
+        self.$pageIndexSpan.innerHTML = "Page " + parameter.index;
       }
     };
 
@@ -47,6 +63,21 @@
         },
         false
       );
+    } else if (event === "onPageSizeSelectChange") {
+      $on(self.$pageSizeSelect, "change", function(event) {
+        event.preventDefault();
+        handler(self.$pageSizeSelect.value);
+      });
+    } else if (event === "onNextPage") {
+      $on(self.$nextButton, "click", function(event) {
+        event.preventDefault();
+        handler();
+      });
+    } else if (event === "onPreviousPage") {
+      $on(self.$backButton, "click", function(event) {
+        event.preventDefault();
+        handler();
+      });
     }
   };
 

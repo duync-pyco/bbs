@@ -7,10 +7,43 @@
     self.model = model;
     self.view = view;
 
+    self.total = 0;
+    self.pageSize = 1;
+    self.pageIndex = 1;
+
     self.view.bind("submit", function(article) {
       self._submitItem(article);
     });
+
+    self.view.bind("onPageSizeSelectChange", function(size) {
+      self._changePageSize(size);
+    });
+
+    self.view.bind("onNextPage", function() {
+      var newStart = self.pageIndex * self.pageSize;
+      if (newStart > self.total - 1) return;
+
+      ++self.pageIndex;
+      self._updateHashSizeAndIndex();
+    });
+
+    self.view.bind("onPreviousPage", function() {
+      if (self.pageIndex < 2) return;
+      --self.pageIndex;
+      self._updateHashSizeAndIndex();
+    });
   }
+
+  Controller.prototype._updateHashSizeAndIndex = function() {
+    this._changeLocation("#/articles/" + this.pageSize + "/" + this.pageIndex);
+    this._getArticlesAndSetView();
+  };
+
+  Controller.prototype._changePageSize = function(size) {
+    this.pageSize = parseInt(size, 10);
+    this.pageIndex = 1;
+    this._updateHashSizeAndIndex();
+  };
 
   Controller.prototype.setPage = function(locationHash) {
     var route = locationHash.split("/")[1];
@@ -19,16 +52,38 @@
     this.view.render("setPage", page);
 
     if (page === "articles") {
-      this._getArticleAndSetView();
+      var size = locationHash.split("/")[2];
+      var index = locationHash.split("/")[3];
+      if (!size || !index) {
+        this._changeLocation(
+          "#/articles/" + this.pageSize + "/" + this.pageIndex
+        );
+      } else {
+        this.pageSize = parseInt(size, 10);
+        this.pageIndex = parseInt(index, 10);
+      }
+      this._getArticlesAndSetView();
     }
   };
 
-  Controller.prototype._getArticleAndSetView = function() {
+  Controller.prototype._getArticlesAndSetView = function() {
     var self = this;
     self.model.getAll(function(articles) {
-      self.view.render("showArticles", articles.sort(function(a, b) {
-        return a.id < b.id
-      }));
+      self.total = articles.length;
+
+      var start = (self.pageIndex - 1) * self.pageSize;
+      var end = start + self.pageSize;
+
+      var sortedArticles = articles.sort(function(a, b) {
+        return a.id < b.id;
+      });
+      var slicedArticles = sortedArticles.slice(start, end);
+
+      self.view.render("showArticles", slicedArticles);
+      self.view.render("changeSizeAndIndex", {
+        size: self.pageSize,
+        index: self.pageIndex
+      });
     });
   };
 
@@ -37,7 +92,7 @@
     self.model.create(article, function(addedArticle) {
       self._changeLocation("#/articles");
       self.view.render("setPage", "articles");
-      self._getArticleAndSetView()
+      self._getArticleAndSetView();
     });
   };
 

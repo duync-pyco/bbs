@@ -24,13 +24,14 @@
   };
 
   function Template() {
-    this.defaultTemplate =
-      '<li class="item-article" data-id={{id}}>' +
+    this.articleTemplate =
       "<h2>{{title}}</h2>" +
       "<p>Posted by {{author}} - {{email}}</p>" +
       "<p>Updated at: {{updatedAt}} - Views: {{views}}</p>" +
-      "<p>{{content}}</p>" +
-      "</li>";
+      "<p>{{content}}</p>";
+
+    this.defaultTemplate =
+      '<li class="item-article" data-id={{id}}>' + this.articleTemplate + "</li>";
   }
 
   Template.prototype.showArticles = function(articles) {
