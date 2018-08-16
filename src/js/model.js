@@ -30,6 +30,22 @@
     callback(article);
   };
 
+  Model.prototype.update = function(article, callback) {
+    var articles = JSON.parse(localStorage.getItem(this._dbName));
+    for (var i = 0; i < articles.length; i++) {
+      if (articles[i].id === article.id) {
+        for (var key in article) {
+          articles[i][key] = article[key];
+        }
+        break;
+      }
+    }
+    localStorage.setItem(this._dbName, JSON.stringify(articles));
+
+    callback = callback || function() {};
+    callback(article);
+  };
+
   window.app = window.app || {};
   window.app.Model = Model;
 })(window);

@@ -40,7 +40,7 @@
 
   Controller.prototype._navigateToViewArticle = function(id) {
     this._changeLocation("#/article/" + id);
-    this.view.render("setPage", 'article');
+    this.view.render("setPage", "article");
     this._getArticleAndSetView(id);
   };
 
@@ -52,7 +52,7 @@
       });
       if (article) {
         article.views++;
-        // TODO: Save to database
+        self.model.update(article);
         self.view.render("showArticle", article);
       } else {
         self.view.render("showArticleNotFound");
