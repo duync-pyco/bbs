@@ -71,11 +71,7 @@
     var self = this;
     article.updatedAt = new Date().toString()
     self.model.update(article, function() {
-      self._changeLocation(
-        "#/articles/" + self.pageSize + "/" + self.pageIndex
-      );
-      self.view.render("setPage", "articles");
-      self._getArticlesAndSetView();
+      self._navigateToArticlesPage()
     });
   }
 
@@ -103,8 +99,19 @@
     });
   };
 
-  Controller.prototype._deleteArticle = function() {
-    // TODO: finish it
+  Controller.prototype._navigateToArticlesPage = function() {
+    this._changeLocation(
+      "#/articles/" + this.pageSize + "/" + this.pageIndex
+    );
+    this.view.render("setPage", "articles");
+    this._getArticlesAndSetView();
+  }
+
+  Controller.prototype._deleteArticle = function(id) {
+    var self = this;
+    self.model.delete(id, function() {
+      self._navigateToArticlesPage()
+    });
   }
 
   Controller.prototype._updateHashSizeAndIndex = function() {
@@ -168,10 +175,8 @@
 
   Controller.prototype._submitItem = function(article) {
     var self = this;
-    self.model.create(article, function(addedArticle) {
-      self._changeLocation("#/articles");
-      self.view.render("setPage", "articles");
-      self._getArticlesAndSetView();
+    self.model.create(article, function() {
+      self._navigateToArticlesPage()
     });
   };
 

@@ -46,6 +46,20 @@
     callback(article);
   };
 
+  Model.prototype.delete = function(id, callback) {
+    var articles = JSON.parse(localStorage.getItem(this._dbName));
+    for (var i = 0; i < articles.length; i++) {
+      if (articles[i].id === id) {
+        articles.splice(i, 1);
+        break;
+      }
+    }
+    localStorage.setItem(this._dbName, JSON.stringify(articles));
+
+    callback = callback || function() {};
+    callback();
+  }
+
   window.app = window.app || {};
   window.app.Model = Model;
 })(window);
