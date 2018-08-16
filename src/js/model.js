@@ -58,7 +58,7 @@
 
     callback = callback || function() {};
     callback();
-  }
+  };
 
   window.app = window.app || {};
   window.app.Model = Model;

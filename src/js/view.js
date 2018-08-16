@@ -107,7 +107,11 @@
     } else if (event === "onDeleteArticle") {
       $on(qs(".button-delete"), "click", function(event) {
         event.preventDefault();
-        handler(self._itemId(this, "div"));
+
+        var res = confirm("Are you sure?");
+        if (res === true) {
+          handler(self._itemId(this, "div"));
+        }
       });
     } else if (event === "edit-submit") {
       var editArticleForm = qs(".form-edit-article");

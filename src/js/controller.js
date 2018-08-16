@@ -69,11 +69,11 @@
 
   Controller.prototype._updateArticle = function(article) {
     var self = this;
-    article.updatedAt = new Date().toString()
+    article.updatedAt = new Date().toString();
     self.model.update(article, function() {
-      self._navigateToArticlesPage()
+      self._navigateToArticlesPage();
     });
-  }
+  };
 
   Controller.prototype._getArticleAndSetView = function(id) {
     var self = this;
@@ -100,19 +100,17 @@
   };
 
   Controller.prototype._navigateToArticlesPage = function() {
-    this._changeLocation(
-      "#/articles/" + this.pageSize + "/" + this.pageIndex
-    );
+    this._changeLocation("#/articles/" + this.pageSize + "/" + this.pageIndex);
     this.view.render("setPage", "articles");
     this._getArticlesAndSetView();
-  }
+  };
 
   Controller.prototype._deleteArticle = function(id) {
     var self = this;
     self.model.delete(id, function() {
-      self._navigateToArticlesPage()
+      self._navigateToArticlesPage();
     });
-  }
+  };
 
   Controller.prototype._updateHashSizeAndIndex = function() {
     this._changeLocation("#/articles/" + this.pageSize + "/" + this.pageIndex);
@@ -176,7 +174,7 @@
   Controller.prototype._submitItem = function(article) {
     var self = this;
     self.model.create(article, function() {
-      self._navigateToArticlesPage()
+      self._navigateToArticlesPage();
     });
   };
 
